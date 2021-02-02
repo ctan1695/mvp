@@ -1,0 +1,6 @@
+- Ability for users to upload recipes (i.e. not a url link to a recipe)
+- Ability for users to export a list of recipes into an email (e.g. if they want to recommend them to a friend!)
+- Categorizing recipes (e.g. dinner, dessert, special occasion, time it takes to cook/bake, etc.)
+- Ability for users to store notes with the recipes (e.g. actual bake time is less than the recipe calls for, good substitutes, etc.)
+- A way to extract the ingredients needed for a recipe and turn it into a checklist for grocery shopping.
+- Ability to search my app by ingredient and have my app return some recipes that include that ingredient.
