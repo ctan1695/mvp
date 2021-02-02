@@ -1,0 +1,22 @@
+{
+  "name": "rpt26-mvp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ctan1695/rpt26-mvp.git"
+  },
+  "author": "Chloe Tan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ctan1695/rpt26-mvp/issues"
+  },
+  "homepage": "https://github.com/ctan1695/rpt26-mvp#readme",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}

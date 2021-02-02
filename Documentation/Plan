@@ -5,10 +5,10 @@ Dependencies:
   - AJAX
 
 1. Client-side:
--- Field for name
--- Field for recipe url
--- Button to submit recipes
--- Button to retrieve recipes
+-- DONE - Field for name
+-- DONE - Field for recipe url
+-- DONE - Button to submit recipes
+-- DONE - Button to retrieve recipes
 -- Send POST request to server upon click of submit button
 -- Send GET request to server upon click of retrieve button
 2. Server-side:
