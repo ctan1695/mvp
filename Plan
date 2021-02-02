@@ -1,0 +1,21 @@
+Dependencies:
+  - Express
+  - MySQL or MongoDB
+  - jQuery
+  - AJAX
+
+1. Client-side:
+-- Field for name
+-- Field for recipe url
+-- Button to submit recipes
+-- Button to retrieve recipes
+-- Send POST request to server upon click of submit button
+-- Send GET request to server upon click of retrieve button
+2. Server-side:
+-- Route to '/' will serve up the html
+-- Handle POST request from client
+    => Insert into DB
+    => Send response to client for success/error
+-- Handle GET request from client
+    => Select from DB
+    => Send response to client with data found from DB with HTTP status for success/error
