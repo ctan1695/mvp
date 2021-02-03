@@ -1,6 +1,6 @@
 Dependencies:
   - Express
-  - MySQL or MongoDB
+  - MySQL
   - jQuery
   - AJAX
 
@@ -11,6 +11,7 @@ Dependencies:
 -- DONE - Button to retrieve recipes
 -- Send POST request to server upon click of submit button
 -- DONE - Send GET request to server upon click of retrieve button
+
 2. Server-side:
 -- DONE - Route to '/' will serve up the html
 -- Handle POST request from client
@@ -19,3 +20,9 @@ Dependencies:
 -- Handle GET request from client
     => Select from DB
     => Send response to client with data found from DB with HTTP status for success/error
+
+3. MySQL
+-- DONE - Create db and tables
+-- Connect server to db
+    => POST request should INSERT into db table
+    => GET request should SELECT FROM db table
