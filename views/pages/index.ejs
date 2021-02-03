@@ -1,27 +1,30 @@
-<head>
-  <% include('../partials/_header') %>
-</head>
+<%- include('../partials/_head') %>
 
 <body>
+    <%- include('../partials/_title') %>
+
+  <main>
   <!-- <form action="" method="get" class="form-example"> -->
-  <form>
-    <div class="input-name">
-      <label for="name">Enter your name: </label>
-      <!-- <input type="text" name="name" id="name" required> -->
-      <input type="text">
-    </div>
-    <div class="input-recipe">
-      <label for="email">Enter your recipe URL: </label>
-      <!-- <input type="email" name="email" id="email" required> -->
-      <input type="text">
-    </div>
-    <div class="button-submit">
-      <input type="submit" value="Add Recipe!">
-    </div>
-    <div class="button-retrieve">
-      <button type="button">Get My Recipes!</button>
-    </div>
-  </form>
-  <script src="app.js"></script>
+    <form>
+      <div class="input-name">
+        <label for="name">Enter your name: </label>
+        <!-- <input type="text" name="name" id="name" required> -->
+        <input type="text">
+      </div>
+      <div class="input-recipe">
+        <label for="email">Enter your recipe URL: </label>
+        <!-- <input type="email" name="email" id="email" required> -->
+        <input type="text">
+      </div>
+      <div class="button-submit">
+        <input type="submit" value="Add Recipe!">
+      </div>
+      <div class="button-retrieve">
+        <button type="button">Get My Recipes!</button>
+      </div>
+    </form>
+    <script src="app.js"></script>
+  </main>
+
 </body>
 
