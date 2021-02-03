@@ -1,12 +1,22 @@
 
-$('.button-submit').on('click', () => {
-  alert('Submit button clicked');
+$('.button-submit').on('click', (event) => {
+  event.preventDefault();
+
+  $.ajax({
+    url: "http://localhost:5500/submit",
+    type: "GET",
+    success: () => {
+      console.log('Successfully triggered POST request to server.')
+    }
+  })
 })
 
 
-$('.button-retrieve').on('click', () => {
+$('.button-retrieve').click((event) => {
+  event.preventDefault();
+
   $.ajax({
-    url: "localhost:3000/retrieve",
+    url: "http://localhost:5500/retrieve",
     type: "GET",
     success: () => {
       console.log('Successfully triggered GET request to server.')

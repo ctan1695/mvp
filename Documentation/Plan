@@ -10,9 +10,9 @@ Dependencies:
 -- DONE - Button to submit recipes
 -- DONE - Button to retrieve recipes
 -- Send POST request to server upon click of submit button
--- Send GET request to server upon click of retrieve button
+-- DONE - Send GET request to server upon click of retrieve button
 2. Server-side:
--- Route to '/' will serve up the html
+-- DONE - Route to '/' will serve up the html
 -- Handle POST request from client
     => Insert into DB
     => Send response to client for success/error

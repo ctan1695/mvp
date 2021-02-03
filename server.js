@@ -12,3 +12,8 @@ app.listen(port);
 app.get('/', (req, res) => {
   res.render('pages/index');
 })
+
+app.get('/retrieve', (req, res) => {
+  console.log('req: ', req);
+  res.render('pages/recipeResults.ejs');
+})
