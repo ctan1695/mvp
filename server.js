@@ -79,10 +79,13 @@ app.post('/submit', (req, res) => {
         if (err) {
           reject(err);
         } else {
-          console.log('Successfully inserted user and recipe into database');
+          console.log('Successfully inserted user and recipe into database, here are the results: ', results);
           resolve(results);
         }
       })
     })
+  })
+  .then(() => {
+    res.render('pages/addedRecipe');
   })
 });
