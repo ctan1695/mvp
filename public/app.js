@@ -1,7 +1,7 @@
 
 $('.button-submit').on('click', (event) => {
   var userName = $('.input-name').val();
-  var recipeURL = $('.input-recipe').val();
+  var recipeURL = $('.input-recipe').val().toString();
 
 
   console.log('userName: ', userName);
