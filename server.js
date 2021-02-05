@@ -24,7 +24,45 @@ app.get('/', (req, res) => {
 })
 
 app.get('/retrieve', (req, res) => {
-  res.render('pages/recipeResults');
+
+  return new Promise((resolve, reject) => {
+    console.log('First Promise in GET retrieve Reached!');
+    resolve('Success - GET');
+  })
+  .then(() => {
+    return new Promise((resolve, reject) => {
+      query = 'select ID from USERS where NAME = ?;';
+      queryArgs = [req.query.user];
+
+      database.query(query, queryArgs, (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          userID = results[0].ID;
+          console.log('GET userID: ', userID);
+          resolve(userID);
+        }
+      })
+    })
+  })
+  .then((user_id) => {
+    return new Promise((resolve, reject) => {
+      query = 'select RECIPE_URL from recipes where USER_ID = ?;';
+      queryArgs = [user_id];
+
+      database.query(query, queryArgs, (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          console.log('recipe query results: ', results[0]);
+          resolve(results);
+        }
+      })
+    })
+  })
+  .then(() => {
+    res.render('pages/recipeResults');
+  })
 })
 
 app.get('/submit', (req, res) => {
@@ -33,8 +71,8 @@ app.get('/submit', (req, res) => {
 
 app.post('/submit', (req, res) => {
   return new Promise((resolve, reject) => {
-    console.log('First Promise Reached!');
-    resolve('Success!');
+    console.log('First Promise in POST submit Reached!');
+    resolve('Success - POST');
   })
   .then(() => {
     return new Promise((resolve, reject) => {
@@ -62,7 +100,7 @@ app.post('/submit', (req, res) => {
           reject(err);
         } else {
           userID = results[0].ID;
-          console.log('userID: ', userID);
+          console.log('POST userID: ', userID);
           resolve(userID);
         }
       })

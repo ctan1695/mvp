@@ -24,5 +24,9 @@ Dependencies:
 3. MySQL
 -- DONE - Create db and tables
 -- Connect server to db
-    => POST request should INSERT into db table
+    => DONE - POST request should INSERT into db table
     => GET request should SELECT FROM db table
+
+NEXT STEPS:
+1. Upon click of retrieve button, have the client display all the recipes for the user.
+2. Getting the client to display success message upon successful insertion of recipe!
