@@ -60,8 +60,16 @@ app.get('/retrieve', (req, res) => {
       })
     })
   })
-  .then(() => {
-    res.render('pages/recipeResults');
+  .then((results) => {
+
+    var username = req.query.user;
+    var recipes = [];
+
+    for (var i = 0; i < results.length; i++) {
+      recipes.push(results[i].RECIPE_URL);
+    }
+    console.log('recipes: ', recipes);
+    res.render('pages/recipeResults', {username, recipes})
   })
 })
 

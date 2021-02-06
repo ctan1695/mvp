@@ -5,5 +5,12 @@
 
 <body>
     <%- include('../partials/_title') %>
-    <!-- Display message: Here are recipes for ___: -->
+    <%- include('../partials/_form') %>
+    <script src="app.js"></script>
+    <p>Here are the recipes for <%= username %>:</p>
+    <p><% recipes.forEach((recipe) => { %>
+        <li>
+            <a href=<%= recipe %>>Recipe</a>
+        </li>
+    <% }) %></p>
 </body>
