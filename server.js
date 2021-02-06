@@ -26,7 +26,6 @@ app.get('/', (req, res) => {
 app.get('/retrieve', (req, res) => {
 
   return new Promise((resolve, reject) => {
-    console.log('First Promise in GET retrieve Reached!');
     resolve('Success - GET');
   })
   .then(() => {
@@ -36,40 +35,57 @@ app.get('/retrieve', (req, res) => {
 
       database.query(query, queryArgs, (err, results) => {
         if (err) {
+          console.log('err: ', err);
           reject(err);
         } else {
-          userID = results[0].ID;
-          console.log('GET userID: ', userID);
+          if (results[0] && results[0].ID) {
+            userID = results[0].ID;
+          } else {
+            userID = '';
+          }
+
           resolve(userID);
         }
       })
     })
   })
+  .catch((error) => {
+    console.log('Error during GET request: ', error);
+  })
   .then((user_id) => {
     return new Promise((resolve, reject) => {
-      query = 'select RECIPE_URL from recipes where USER_ID = ?;';
+      query = 'select RECIPE_NAME, RECIPE_URL from recipes where USER_ID = ?;';
       queryArgs = [user_id];
 
       database.query(query, queryArgs, (err, results) => {
         if (err) {
           reject(err);
         } else {
-          console.log('recipe query results: ', results[0]);
           resolve(results);
         }
       })
     })
   })
+  // .catch((error) => {
+  //   console.log('Error during GET request: ', error);
+  // })
   .then((results) => {
-
+    var resultHeading = '';
     var username = req.query.user;
     var recipes = [];
 
     for (var i = 0; i < results.length; i++) {
-      recipes.push(results[i].RECIPE_URL);
+      var singleRecipe = {};
+      singleRecipe.recipe_name = results[i].RECIPE_NAME;
+      singleRecipe.recipe_url = results[i].RECIPE_URL;
+      recipes.push(singleRecipe);
     }
-    console.log('recipes: ', recipes);
-    res.render('pages/recipeResults', {username, recipes})
+    if (username === '' || recipes.length === 0) {
+      resultHeading = 'No recipes found for this user!';
+    } else {
+      resultHeading = 'Here are the recipes for ' + username + ': ';
+    }
+    res.render('pages/recipeResults', {resultHeading, recipes})
   })
 })
 
@@ -79,7 +95,6 @@ app.get('/retrieve', (req, res) => {
 
 app.post('/submit', (req, res) => {
   return new Promise((resolve, reject) => {
-    console.log('First Promise in POST submit Reached!');
     resolve('Success - POST');
   })
   .then(() => {
@@ -108,7 +123,6 @@ app.post('/submit', (req, res) => {
           reject(err);
         } else {
           userID = results[0].ID;
-          console.log('POST userID: ', userID);
           resolve(userID);
         }
       })
@@ -116,23 +130,19 @@ app.post('/submit', (req, res) => {
   })
   .then((user_id) => {
     return new Promise((resolve, reject) => {
-      console.log('user_id: ', user_id);
-      //Insert recipe into the database for our user
-      query = 'insert into RECIPES (recipe_url, user_id) values (?, ?);'
-      queryArgs = [req.body.recipe, user_id];
+      query = 'insert into RECIPES (recipe_name, recipe_url, user_id) values (?, ?, ?);'
+      queryArgs = [req.body.recipe_name, req.body.recipe, user_id];
 
       database.query(query, queryArgs, (err, results) => {
         if (err) {
           reject(err);
         } else {
-          console.log('Successfully inserted user and recipe into database, here are the results: ', results);
           resolve(results);
         }
       })
     })
   })
   .then(() => {
-    console.log('render addedRecipe');
     res.render('pages/addedRecipe');
   })
 });

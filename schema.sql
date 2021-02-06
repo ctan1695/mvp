@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS recipes (
   id INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY(id),
+  recipe_name VARCHAR(500),
   recipe_url VARCHAR(900),
   user_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id)

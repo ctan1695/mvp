@@ -7,10 +7,10 @@
     <%- include('../partials/_title') %>
     <%- include('../partials/_form') %>
     <script src="app.js"></script>
-    <p>Here are the recipes for <%= username %>:</p>
+    <p><%= resultHeading %></p>
     <p><% recipes.forEach((recipe) => { %>
         <li>
-            <a href=<%= recipe %>>Recipe</a>
+            <a href=<%= recipe.recipe_url %>><%= recipe.recipe_name %></a>
         </li>
     <% }) %></p>
 </body>
