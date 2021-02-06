@@ -20,8 +20,9 @@ $('.button-submit').on('click', (event) => {
       recipe: recipeURL
     },
     dataType: "json",
-    success: () => {
-      console.log('Successfully triggered POST request to server.')
+    success: (results) => {
+
+      console.log('Successfully triggered POST request to server: ', results);
     }
   })
 })
@@ -39,8 +40,9 @@ $('.button-retrieve').click((event) => {
       user: userName_retrieve
     },
     contentType: "application/json",
-    success: () => {
-      console.log('Successfully triggered GET request to server.')
+    success: (results) => {
+      console.log('Successfully triggered GET request to server: ', results);
+      $('body').html(results);
     }
   })
 })
