@@ -65,9 +65,9 @@ app.get('/retrieve', (req, res) => {
   })
 })
 
-app.get('/submit', (req, res) => {
-  res.render('pages/addedRecipe');
-})
+// app.get('/submit', (req, res) => {
+//   res.render('pages/addedRecipe');
+// })
 
 app.post('/submit', (req, res) => {
   return new Promise((resolve, reject) => {
@@ -124,6 +124,7 @@ app.post('/submit', (req, res) => {
     })
   })
   .then(() => {
+    console.log('render addedRecipe');
     res.render('pages/addedRecipe');
   })
 });
