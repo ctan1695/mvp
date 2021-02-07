@@ -1,7 +1,8 @@
 import React from 'react';
 import jsx from 'react-jsx';
 import $ from 'jquery';
-import {RecipeResults} from './RecipeResults';
+import {RecipeResults} from './components/RecipeResults';
+import {AddRecipe} from './components/AddRecipe';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class App extends React.Component {
       userName: '',
       recipeName: '',
       recipeLink: '',
-      recipeResults: []
+      recipeResults: [],
+      recipeAdded: ''
     };
 
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
@@ -26,12 +28,10 @@ class App extends React.Component {
   }
 
   handleChangeRecipeName(event) {
-    console.log('handleChangeRecipeName event: ', event.target.value);
     this.setState({recipeName: event.target.value});
   }
 
   handleChangeRecipeUrl(event) {
-    console.log('handleChangeRecipeUrl event: ', event.target.value);
     this.setState({recipeLink: event.target.value});
   }
 
@@ -52,7 +52,7 @@ class App extends React.Component {
       },
       dataType: "text",
       success: (results) => {
-        $('body').html(results);
+        this.setState({recipeAdded: recipeName});
       },
       error: (error) => {
         console.log('Error in POST response!: ', error);
@@ -63,9 +63,6 @@ class App extends React.Component {
   handleGetRecipes(event) {
     event.preventDefault();
     var userName_retrieve = this.state.userName;
-
-    console.log('userName_retrieve: ', userName_retrieve);
-
     $.ajax({
       url: "http://localhost:5500/retrieve",
       type: "GET",
@@ -74,9 +71,7 @@ class App extends React.Component {
       },
       contentType: "application/json",
       success: (results) => {
-        console.log('results hi: ', results);
         this.setState({recipeResults: results});
-        console.log('this.state: ', this.state);
       },
       error: (error) => {
         console.log('Error in GET response!: ', error);
@@ -92,18 +87,21 @@ class App extends React.Component {
             Username:
             <input type="text" value={this.state.userName} onChange={this.handleChangeUserName}/>
           </label>
-          <label>
-            Recipe Name:
-            <input type="text" value={this.state.recipeName} onChange={this.handleChangeRecipeName}/>
-          </label>
-          <input type="submit" value="Add a Recipe"/>
-          <label>
-            Recipe Link:
-            <input type="text" value={this.state.recipeLink} onChange={this.handleChangeRecipeUrl}/>
-          </label>
           <input type="submit" value="Get all recipes for username"/>
         </form>
+        <form onSubmit={this.handleAddRecipe}>
+          <label>
+              Recipe Name:
+              <input type="text" value={this.state.recipeName} onChange={this.handleChangeRecipeName}/>
+            </label>
+            <input type="submit" value="Add a Recipe"/>
+            <label>
+              Recipe Link:
+              <input type="text" value={this.state.recipeLink} onChange={this.handleChangeRecipeUrl}/>
+            </label>
+        </form>
       <RecipeResults recipes={this.state.recipeResults} />
+      <AddRecipe recipe={this.state.recipeAdded} />
       </div>
     )
   }
