@@ -77,7 +77,8 @@ app.get('/retrieve', (req, res) => {
     } else {
       resultHeading = 'Here are the recipes for ' + username + ': ';
     }
-    res.render('pages/recipeResults', {resultHeading, recipes})
+    // res.render('pages/recipeResults', {resultHeading, recipes})
+    res.send(results);
   })
 })
 

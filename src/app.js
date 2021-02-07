@@ -1,6 +1,7 @@
 import React from 'react';
 import jsx from 'react-jsx';
 import $ from 'jquery';
+import {RecipeResults} from './RecipeResults';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class App extends React.Component {
     this.state = {
       userName: '',
       recipeName: '',
-      recipeLink: ''
+      recipeLink: '',
+      recipeResults: []
     };
 
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
@@ -20,7 +22,6 @@ class App extends React.Component {
   }
 
   handleChangeUserName(event) {
-    console.log('handleChangeUserName event: ', event.target.value);
     this.setState({userName: event.target.value});
   }
 
@@ -73,7 +74,9 @@ class App extends React.Component {
       },
       contentType: "application/json",
       success: (results) => {
-        $('body').html(results);
+        console.log('results hi: ', results);
+        this.setState({recipeResults: results});
+        console.log('this.state: ', this.state);
       },
       error: (error) => {
         console.log('Error in GET response!: ', error);
@@ -100,6 +103,7 @@ class App extends React.Component {
           </label>
           <input type="submit" value="Get all recipes for username"/>
         </form>
+      <RecipeResults recipes={this.state.recipeResults} />
       </div>
     )
   }
