@@ -7,7 +7,7 @@ var queryArgs = [];
 var app = express();
 var port = 5500;
 
-app.use(express.static('public'));
+app.use(express.static('dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'views'));
@@ -17,11 +17,6 @@ app.listen(port, () => {
 });
 
 /* Route Handlers */
-
-//Home page
-app.get('/', (req, res) => {
-  res.render('pages/index');
-})
 
 app.get('/retrieve', (req, res) => {
 
