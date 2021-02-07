@@ -7,7 +7,7 @@ var queryArgs = [];
 var app = express();
 var port = 5500;
 
-app.use(express.static('public'));
+app.use(express.static('dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'views'));
@@ -17,11 +17,6 @@ app.listen(port, () => {
 });
 
 /* Route Handlers */
-
-//Home page
-app.get('/', (req, res) => {
-  res.render('pages/index');
-})
 
 app.get('/retrieve', (req, res) => {
 
@@ -66,9 +61,6 @@ app.get('/retrieve', (req, res) => {
       })
     })
   })
-  // .catch((error) => {
-  //   console.log('Error during GET request: ', error);
-  // })
   .then((results) => {
     var resultHeading = '';
     var username = req.query.user;
@@ -85,13 +77,10 @@ app.get('/retrieve', (req, res) => {
     } else {
       resultHeading = 'Here are the recipes for ' + username + ': ';
     }
-    res.render('pages/recipeResults', {resultHeading, recipes})
+    // res.render('pages/recipeResults', {resultHeading, recipes})
+    res.send(results);
   })
 })
-
-// app.get('/submit', (req, res) => {
-//   res.render('pages/addedRecipe');
-// })
 
 app.post('/submit', (req, res) => {
   return new Promise((resolve, reject) => {
