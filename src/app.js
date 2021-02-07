@@ -1,5 +1,6 @@
 import React from 'react';
 import jsx from 'react-jsx';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
@@ -7,7 +8,15 @@ class App extends React.Component {
     this.state = {
       userName: '',
       recipeName: '',
-      recipeLink: ''};
+      recipeLink: ''
+    };
+
+    this.handleChangeUserName = this.handleChangeUserName.bind(this);
+    this.handleChangeRecipeName = this.handleChangeRecipeName.bind(this);
+    this.handleChangeRecipeUrl = this.handleChangeRecipeUrl.bind(this);
+    this.handleAddRecipe = this.handleAddRecipe.bind(this);
+    this.handleGetRecipes = this.handleGetRecipes.bind(this);
+
   }
 
   handleChangeUserName(event) {
@@ -26,9 +35,6 @@ class App extends React.Component {
   }
 
   handleAddRecipe(event) {
-    // var userName_submit = $('.input-name').val();
-    // var recipeName = $('.input-recipe-name').val().toString();
-    // var recipeURL = $('.input-recipe').val().toString();
     var userName_submit = this.state.userName;
     var recipeName = this.state.recipeName;
     var recipeURL = this.state.recipeLink;
@@ -55,9 +61,9 @@ class App extends React.Component {
 
   handleGetRecipes(event) {
     event.preventDefault();
-    // event.stopPropogation();
-    // var userName_retrieve = $('.input-name').val();
     var userName_retrieve = this.state.userName;
+
+    console.log('userName_retrieve: ', userName_retrieve);
 
     $.ajax({
       url: "http://localhost:5500/retrieve",

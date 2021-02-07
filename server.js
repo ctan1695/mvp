@@ -61,9 +61,6 @@ app.get('/retrieve', (req, res) => {
       })
     })
   })
-  // .catch((error) => {
-  //   console.log('Error during GET request: ', error);
-  // })
   .then((results) => {
     var resultHeading = '';
     var username = req.query.user;
@@ -83,10 +80,6 @@ app.get('/retrieve', (req, res) => {
     res.render('pages/recipeResults', {resultHeading, recipes})
   })
 })
-
-// app.get('/submit', (req, res) => {
-//   res.render('pages/addedRecipe');
-// })
 
 app.post('/submit', (req, res) => {
   return new Promise((resolve, reject) => {
