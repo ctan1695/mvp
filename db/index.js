@@ -1,11 +1,15 @@
+var promise = require('promise-mysql');
 var mysql = require('mysql');
 
-const dbConnection = mysql.createConnection({
+// console.log('promise: ', promise)
+
+const dbConnection = promise.createConnection({
   user: 'root',
   password: '',
   database: 'vault'
-});
-
-dbConnection.connect();
+})
+  .catch((err) => {
+    console.log('err connecting to db: ', err);
+  })
 
 module.exports = dbConnection;
